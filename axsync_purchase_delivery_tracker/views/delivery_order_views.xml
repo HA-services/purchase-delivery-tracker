@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="axsync_delivery_order_view_tree" model="ir.ui.view">
+        <field name="name">axsync.delivery.order.tree</field>
+        <field name="model">axsync.delivery.order</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Tracking" create="0" edit="0" delete="0"
+                  decoration-danger="is_overdue" decoration-success="status == 'received'" decoration-muted="status == 'closed'">
+                <field name="order_id"/>
+                <field name="partner_id"/>
+                <field name="order_day" string="Ordered" optional="show"/>
+                <field name="next_expected_day" string="Expected"/>
+                <field name="last_receipt_day" string="Received On"/>
+                <field name="ordered_qty" string="Ordered" sum="Total" optional="show"/>
+                <field name="received_qty" string="Received" sum="Total" optional="show"/>
+                <field name="outstanding_qty" string="Outstanding" sum="Total"/>
+                <field name="received_pct" widget="progressbar" optional="show"/>
+                <field name="status" widget="badge" decoration-info="status == 'pending'"
+                       decoration-warning="status == 'partial'" decoration-success="status == 'received'"/>
+                <field name="delay_days" string="Delay (d)"/>
+                <field name="user_id" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="is_overdue" column_invisible="True"/>
+                <button name="action_open_purchase_order" type="object" icon="fa-external-link" title="Open Purchase Order"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_order_view_form" model="ir.ui.view">
+        <field name="name">axsync.delivery.order.form</field>
+        <field name="model">axsync.delivery.order</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Tracking" create="0" edit="0" delete="0">
+                <header>
+                    <button name="action_open_purchase_order" type="object" string="Open Purchase Order" class="btn-primary"/>
+                    <field name="status" widget="statusbar" statusbar_visible="pending,partial,received"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order_id"/>
+                            <field name="partner_id"/>
+                            <field name="user_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="date_order"/>
+                        </group>
+                        <group>
+                            <field name="expected_date"/>
+                            <field name="next_expected_date"/>
+                            <field name="last_receipt_date"/>
+                            <field name="delay_days"/>
+                            <field name="is_overdue"/>
+                        </group>
+                        <group string="Quantities (product units)">
+                            <field name="ordered_qty"/>
+                            <field name="received_qty"/>
+                            <field name="outstanding_qty"/>
+                            <field name="received_pct" widget="progressbar"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_order_view_search" model="ir.ui.view">
+        <field name="name">axsync.delivery.order.search</field>
+        <field name="model">axsync.delivery.order</field>
+        <field name="arch" type="xml">
+            <search string="Search Delivery Tracking">
+                <field name="order_id"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <filter name="open" string="Open" domain="[('is_open', '=', True)]"/>
+                <filter name="pending" string="Pending" domain="[('status', '=', 'pending')]"/>
+                <filter name="partial" string="Partially Received" domain="[('status', '=', 'partial')]"/>
+                <filter name="overdue" string="Overdue" domain="[('is_overdue', '=', True)]"/>
+                <filter name="received" string="Completed" domain="[('is_completed', '=', True)]"/>
+                <filter name="late" string="Delivered Late" domain="[('is_late', '=', True)]"/>
+                <filter name="on_time" string="Delivered On Time" domain="[('is_on_time', '=', True)]"/>
+                <separator/>
+                <filter name="last_30" string="Ordered in Last 30 Days"
+                        domain="[('date_order', '&gt;=', (context_today() - relativedelta(days=30)).strftime('%Y-%m-%d'))]"/>
+                <filter name="group_supplier" string="Supplier" context="{'group_by': 'partner_id'}"/>
+                <filter name="group_status" string="Delivery Status" context="{'group_by': 'status'}"/>
+                <filter name="group_buyer" string="Buyer" context="{'group_by': 'user_id'}"/>
+                <filter name="group_month" string="Order Month" context="{'group_by': 'order_day:month'}"/>
+                <filter name="group_company" string="Company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_order_view_pivot" model="ir.ui.view">
+        <field name="name">axsync.delivery.order.pivot</field>
+        <field name="model">axsync.delivery.order</field>
+        <field name="arch" type="xml">
+            <pivot string="Delivery Tracking" sample="1">
+                <field name="partner_id" type="row"/>
+                <field name="status" type="col"/>
+                <field name="order_count" type="measure"/>
+                <field name="outstanding_qty" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_order_view_graph" model="ir.ui.view">
+        <field name="name">axsync.delivery.order.graph</field>
+        <field name="model">axsync.delivery.order</field>
+        <field name="arch" type="xml">
+            <graph string="Delivery Tracking" type="bar" sample="1">
+                <field name="status"/>
+                <field name="order_count" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_order_action" model="ir.actions.act_window">
+        <field name="name">Delivery Tracking</field>
+        <field name="res_model">axsync.delivery.order</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="context">{'search_default_open': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No orders to track</p>
+            <p>Confirmed purchase orders with stockable products appear here with their delivery status.</p>
+        </field>
+    </record>
+</odoo>

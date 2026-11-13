@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_axsync_delivery_line_user,axsync.delivery.line user,model_axsync_delivery_line,purchase.group_purchase_user,1,0,0,0
+access_axsync_delivery_order_user,axsync.delivery.order user,model_axsync_delivery_order,purchase.group_purchase_user,1,0,0,0
+access_axsync_delivery_supplier_user,axsync.delivery.supplier user,model_axsync_delivery_supplier,purchase.group_purchase_user,1,0,0,0
+access_axsync_delivery_alert_user,axsync.delivery.alert user,model_axsync_delivery_alert,purchase.group_purchase_user,1,0,0,0
+access_axsync_delivery_alert_manager,axsync.delivery.alert manager,model_axsync_delivery_alert,purchase.group_purchase_manager,1,0,0,1

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="axsync_delivery_alert_view_tree" model="ir.ui.view">
+        <field name="name">axsync.delivery.alert.tree</field>
+        <field name="model">axsync.delivery.alert</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Alerts" create="0" edit="0">
+                <field name="create_date" string="Sent On"/>
+                <field name="alert_type" widget="badge" decoration-info="alert_type == 'upcoming'"
+                       decoration-danger="alert_type == 'overdue'" decoration-warning="alert_type == 'partial'"/>
+                <field name="order_id"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="summary"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_alert_view_search" model="ir.ui.view">
+        <field name="name">axsync.delivery.alert.search</field>
+        <field name="model">axsync.delivery.alert</field>
+        <field name="arch" type="xml">
+            <search string="Search Alerts">
+                <field name="order_id"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <filter name="upcoming" string="Upcoming" domain="[('alert_type', '=', 'upcoming')]"/>
+                <filter name="overdue" string="Overdue" domain="[('alert_type', '=', 'overdue')]"/>
+                <filter name="partial" string="Partially Received" domain="[('alert_type', '=', 'partial')]"/>
+                <filter name="group_type" string="Alert Type" context="{'group_by': 'alert_type'}"/>
+                <filter name="group_user" string="Notified User" context="{'group_by': 'user_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_alert_action" model="ir.actions.act_window">
+        <field name="name">Delivery Alerts</field>
+        <field name="res_model">axsync.delivery.alert</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No alerts sent yet</p>
+            <p>Buyers receive a to-do activity for upcoming, overdue and partially received deliveries. Each situation is notified once.</p>
+        </field>
+    </record>
+</odoo>

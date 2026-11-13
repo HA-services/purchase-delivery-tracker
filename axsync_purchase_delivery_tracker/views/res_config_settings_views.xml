@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="axsync_res_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.axsync.delivery</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='purchase']" position="inside">
+                <block title="Delivery Tracker Alerts" name="axsync_delivery_alerts">
+                    <setting id="axsync_alert_upcoming_setting" help="Notify the buyer a few days before a delivery is expected">
+                        <field name="axsync_alert_upcoming"/>
+                        <div class="content-group" invisible="not axsync_alert_upcoming">
+                            <div class="row mt16">
+                                <label for="axsync_alert_days" class="col-lg-4 o_light_label"/>
+                                <field name="axsync_alert_days"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting id="axsync_alert_overdue_setting" help="Notify the buyer when expected deliveries are overdue">
+                        <field name="axsync_alert_overdue"/>
+                    </setting>
+                    <setting id="axsync_alert_partial_setting" help="Notify the buyer after each partial receipt">
+                        <field name="axsync_alert_partial"/>
+                    </setting>
+                    <setting id="axsync_alert_run_setting" help="Alerts are sent automatically once a day. Each situation is notified once.">
+                        <button name="action_axsync_send_alerts" type="object" string="Send Alerts Now" class="btn-secondary"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
