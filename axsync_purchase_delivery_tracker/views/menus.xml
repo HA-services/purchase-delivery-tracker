@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="axsync_delivery_menu_root" name="Delivery Tracker" parent="purchase.menu_purchase_root"
+              sequence="45" groups="purchase.group_purchase_user"/>
+    <menuitem id="axsync_delivery_menu_dashboard" name="Dashboard" parent="axsync_delivery_menu_root"
+              action="axsync_delivery_dashboard_action" sequence="1"/>
+    <menuitem id="axsync_delivery_menu_tracking" name="Delivery Tracking" parent="axsync_delivery_menu_root"
+              action="axsync_delivery_order_action" sequence="10"/>
+    <menuitem id="axsync_delivery_menu_lines" name="Delivery Lines" parent="axsync_delivery_menu_root"
+              action="axsync_delivery_line_action" sequence="20"/>
+    <menuitem id="axsync_delivery_menu_supplier" name="Supplier Performance" parent="axsync_delivery_menu_root"
+              action="axsync_delivery_supplier_action" sequence="30"/>
+    <menuitem id="axsync_delivery_menu_overdue" name="Overdue Analysis" parent="axsync_delivery_menu_root"
+              action="axsync_delivery_overdue_action" sequence="40"/>
+    <menuitem id="axsync_delivery_menu_alerts" name="Alerts" parent="axsync_delivery_menu_root"
+              action="axsync_delivery_alert_action" sequence="50"/>
+</odoo>

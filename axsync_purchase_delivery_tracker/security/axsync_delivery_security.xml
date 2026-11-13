@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Multi-company: users only see rows of the companies they are allowed to access. -->
+    <record id="axsync_delivery_line_company_rule" model="ir.rule">
+        <field name="name">AXSync delivery lines: multi-company</field>
+        <field name="model_id" ref="model_axsync_delivery_line"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="axsync_delivery_order_company_rule" model="ir.rule">
+        <field name="name">AXSync delivery orders: multi-company</field>
+        <field name="model_id" ref="model_axsync_delivery_order"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="axsync_delivery_supplier_company_rule" model="ir.rule">
+        <field name="name">AXSync supplier performance: multi-company</field>
+        <field name="model_id" ref="model_axsync_delivery_supplier"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="axsync_delivery_alert_company_rule" model="ir.rule">
+        <field name="name">AXSync delivery alerts: multi-company</field>
+        <field name="model_id" ref="model_axsync_delivery_alert"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

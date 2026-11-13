@@ -1,0 +1,211 @@
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0; border-bottom: 1px solid #dee2e6;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <img src="axsync_icon.png" class="img img-fluid" alt="AXSync" style="margin: 0 0 10px 0;"/>
+        </div>
+        <div class="col-md-10">
+          <p class="text-muted" style="margin: 0; font-size: 14px;">AXSync | Odoo 17.0 | Purchase</p>
+          <h1 style="margin: 5px 0 10px 0; font-size: 36px;">AXSync Smart Purchase &amp; Supplier Delivery Tracker</h1>
+          <h3 class="text-muted" style="margin: 0 0 15px 0;">Know which deliveries are late, which are partial and which suppliers you can rely on.</h3>
+          <p style="font-size: 17px;">Track expected versus actual receipts for every purchase order, measure supplier on-time performance and alert buyers before and after a delivery is due.</p>
+          <p><strong>Value in one line:</strong> it reads the receipts you already validate in Odoo Inventory and turns them into delivery status, delay in days and a supplier ranking. It does not change how you purchase or receive.</p>
+          <p><span class="badge badge-primary">Odoo 17.0 Community</span> <span class="badge badge-secondary">Purchase and Inventory</span> <span class="badge badge-secondary">No extra Python libraries</span></p>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-md-12">
+          <img src="axsync_screenshot_1.png" class="img img-fluid" alt="Delivery dashboard with eight KPI tiles, most overdue orders and supplier ranking" style="border: 1px solid #dee2e6;"/>
+          <p class="text-muted" style="margin: 5px 0 0 0; font-size: 13px;">The Delivery Dashboard, captured from the module running on Odoo 17.0 with sample data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">The Business Problems</h2>
+      <p>Odoo records every purchase order and every receipt. Answering "is this supplier late, and how often?" still means comparing dates across several documents.</p>
+      <div class="row">
+        <div class="col-md-4" style="margin-bottom: 15px;"><div class="card"><div class="card-body"><h5>Late deliveries surface too late</h5><p class="text-muted" style="margin: 0;">A supplier is chased only after production or a customer order is already waiting.</p></div></div></div><div class="col-md-4" style="margin-bottom: 15px;"><div class="card"><div class="card-body"><h5>Partial receipts are easy to lose</h5><p class="text-muted" style="margin: 0;">The balance of a backorder sits in another document and is rarely followed.</p></div></div></div><div class="col-md-4" style="margin-bottom: 15px;"><div class="card"><div class="card-body"><h5>Delay is not measured</h5><p class="text-muted" style="margin: 0;">Expected and actual receipt dates are on different records, so delay in days is never calculated.</p></div></div></div><div class="col-md-4" style="margin-bottom: 15px;"><div class="card"><div class="card-body"><h5>Supplier reliability is a feeling</h5><p class="text-muted" style="margin: 0;">Without on-time figures, supplier reviews rely on memory and complaints.</p></div></div></div><div class="col-md-4" style="margin-bottom: 15px;"><div class="card"><div class="card-body"><h5>Returns distort the picture</h5><p class="text-muted" style="margin: 0;">After a return to the supplier it is not obvious that quantity is still missing.</p></div></div></div><div class="col-md-4" style="margin-bottom: 15px;"><div class="card"><div class="card-body"><h5>Alerts depend on people</h5><p class="text-muted" style="margin: 0;">Buyers have to remember to check due dates and partial receipts.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">The Solution</h2>
+      <p>The module adds a Delivery Tracker menu under Purchase. Every report reads live data from your confirmed purchase orders and validated receipts. Nothing is copied and no data is duplicated.</p>
+      <p class="text-center" style="font-size: 17px; padding: 15px; border: 1px solid #dee2e6;"><strong>Confirmed Purchase Orders</strong> &rarr; <strong>Validated Receipts</strong> &rarr; <strong>Delivery Status and Delay</strong> &rarr; <strong>Supplier Performance</strong> &rarr; <strong>Alerts</strong></p>
+      <table class="table table-bordered">
+        <thead class="thead-light"><tr><th>Problem</th><th>How the module addresses it</th></tr></thead>
+        <tbody>
+          <tr><td>Late deliveries</td><td>Overdue flag, delay in days and an overdue age analysis, live on the dashboard.</td></tr>
+          <tr><td>Partial receipts</td><td>Ordered, received, remaining and outstanding quantity per line and per order.</td></tr>
+          <tr><td>Delay measurement</td><td>Expected day compared with the last validated receipt day.</td></tr>
+          <tr><td>Supplier reliability</td><td>On-time percentage, average delay, late deliveries and a ranking per supplier.</td></tr>
+          <tr><td>Returns</td><td>Validated returns reduce the received quantity, so the missing quantity stays visible.</td></tr>
+          <tr><td>Follow-up</td><td>Buyers get an activity for upcoming, overdue and partially received deliveries, once per situation.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">Feature Breakdown</h2>
+
+      <h4 style="margin-top: 20px;">1. Delivery Dashboard</h4>
+      <p>Eight KPI tiles: purchase orders, pending deliveries, partially received orders, overdue orders, completed deliveries, outstanding quantity, on-time delivery rate and average delay. Purchase orders, completed deliveries, on-time rate and average delay follow the period you choose (30, 90, 180 days, 12 months or all time). Pending, partially received, overdue and outstanding quantity are always live. Every tile opens the matching list. Two tables show the most overdue orders and the supplier ranking, and each row opens the order or the supplier's deliveries.</p>
+
+      <h4 style="margin-top: 20px;">2. Purchase Delivery Tracking</h4>
+      <p>One row per confirmed purchase order and one row per purchase line, with expected delivery day, last receipt day, ordered, received and remaining quantity, delivery status (pending, partially received, fully received, closed short) and delay in days. Available as list, pivot and graph with filters such as open, overdue, delivered late and expected in the next 7 days.</p>
+
+      <h4 style="margin-top: 20px;">3. Accurate Received Quantities</h4>
+      <p>Received quantity comes from validated stock receipts through the native received quantity of the purchase line. Partial receipts, several receipts for one line, returns to the supplier and units of measure are handled by Odoo itself, and the module reads the result. Outstanding quantities are converted to the unit of the product so they can be added up.</p>
+
+      <h4 style="margin-top: 20px;">4. Supplier Performance</h4>
+      <p>For every supplier and company: confirmed orders, completed orders, on-time orders, late deliveries, on-time percentage, average delay, average days late, worst delay, open and overdue orders. Suppliers with at least one completed order are ranked by on-time percentage, then average delay.</p>
+
+      <h4 style="margin-top: 20px;">5. Delivery Alerts</h4>
+      <p>A daily scheduled action creates a to-do activity for the buyer of the order when a delivery is upcoming, overdue or partially received. A log keeps what was sent, so the same situation is never notified twice. Alert types and the upcoming window are configured in the Purchase settings, and a button runs the alerts on demand.</p>
+
+      <h4 style="margin-top: 20px;">6. Purchase Order and Supplier Integration</h4>
+      <p>A Delivery Tracking tab on the purchase order shows the status, next expected date, last receipt date, delay and each line. The purchase order list has an optional Delivery column. The supplier form has an On-Time Delivery button.</p>
+
+      <h4 style="margin-top: 20px;">7. Overdue Delivery Analysis</h4>
+      <p>Overdue lines grouped by age (1 to 7, 8 to 14, 15 to 30 and over 30 days), by supplier, product or buyer, in list, pivot and graph.</p>
+
+      <h4 style="margin-top: 20px;">8. Filters and Excel Export</h4>
+      <p>Every report has search fields, ready-made filters, group-by options and totals. Use the standard Export action on lists and Download xlsx on pivots. Reports respect multi-company access rules.</p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">Screenshots</h2>
+      <p class="text-muted">All screenshots come from the module running on Odoo 17.0 with sample purchase data.</p>
+      <h5 style="margin-top: 25px;">1. Delivery dashboard</h5><img src="axsync_screenshot_1.png" class="img img-fluid" alt="Delivery dashboard with eight KPI tiles, most overdue orders and supplier ranking" style="border: 1px solid #dee2e6;"/><h5 style="margin-top: 25px;">2. Delivery tracking per purchase order</h5><img src="axsync_screenshot_2.png" class="img img-fluid" alt="Delivery Tracking list with status, expected date, received percentage and delay" style="border: 1px solid #dee2e6;"/><h5 style="margin-top: 25px;">3. Supplier performance and ranking</h5><img src="axsync_screenshot_3.png" class="img img-fluid" alt="Supplier Performance list with on-time percentage and rank" style="border: 1px solid #dee2e6;"/><h5 style="margin-top: 25px;">4. Delivery Tracking tab inside the purchase order</h5><img src="axsync_screenshot_4.png" class="img img-fluid" alt="Delivery Tracking tab on a purchase order" style="border: 1px solid #dee2e6;"/><h5 style="margin-top: 25px;">5. Overdue delivery analysis</h5><img src="axsync_screenshot_5.png" class="img img-fluid" alt="Overdue lines grouped by overdue age in a graph" style="border: 1px solid #dee2e6;"/>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">Business Benefits</h2>
+      <div class="row">
+        <div class="col-md-4"><h5>Earlier warning</h5><p class="text-muted">Overdue and upcoming deliveries are listed before they become a production problem.</p></div>
+        <div class="col-md-4"><h5>Fact-based supplier reviews</h5><p class="text-muted">On-time percentage and average delay replace opinions.</p></div>
+        <div class="col-md-4"><h5>Nothing falls through</h5><p class="text-muted">Backorders, partial receipts and returns keep the missing quantity visible.</p></div>
+        <div class="col-md-4"><h5>Less manual checking</h5><p class="text-muted">No spreadsheet of expected and actual dates to maintain.</p></div>
+        <div class="col-md-4"><h5>Buyers stay on top</h5><p class="text-muted">Activities arrive in the buyer's to-do list, once per situation.</p></div>
+        <div class="col-md-4"><h5>Native workflow</h5><p class="text-muted">Built on standard Purchase and Inventory. Nothing changes for your receiving team.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">How It Works</h2>
+      <ol>
+        <li><strong>Install the module.</strong> Install Purchase Delivery Tracker from the Apps menu.</li>
+        <li><strong>Check access.</strong> Users with the Purchase User or Manager role get read access automatically.</li>
+        <li><strong>Open the dashboard.</strong> Go to Purchase &gt; Delivery Tracker &gt; Dashboard.</li>
+        <li><strong>Pick the period.</strong> The selector applies to orders, completed deliveries, on-time rate and average delay.</li>
+        <li><strong>Drill down.</strong> Click a tile, or open Delivery Tracking and Delivery Lines.</li>
+        <li><strong>Review suppliers.</strong> Open Supplier Performance for the ranking.</li>
+        <li><strong>Set alerts.</strong> Choose the alert types and the upcoming window in Purchase settings.</li>
+        <li><strong>Export.</strong> Use the standard export on any list or pivot.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">Compatibility and Requirements</h2>
+      <table class="table table-bordered">
+        <tbody>
+          <tr><th style="width: 30%;">Odoo version</th><td>17.0 only</td></tr>
+          <tr><th>Community</th><td>Compatible. Tested on the Odoo 17.0 Community source.</td></tr>
+          <tr><th>Enterprise</th><td>Not tested. The module uses only standard Purchase and Inventory models, but no Enterprise test run has been performed.</td></tr>
+          <tr><th>Required Odoo apps</th><td>Purchase and Inventory.</td></tr>
+          <tr><th>Python libraries</th><td>None beyond Odoo itself.</td></tr>
+          <tr><th>Multi-company</th><td>Supported through record rules. Covered by an automated test.</td></tr>
+          <tr><th>Data and services</th><td>No external services. The module stores only a log of the alerts it sent.</td></tr>
+        </tbody>
+      </table>
+      <h5>Known limitations</h5>
+      <ul>
+        <li>Only confirmed purchase orders with stockable or consumable products are tracked. Service lines are ignored.</li>
+        <li>Days are calendar days in the time zone of the company partner, or UTC when it has none.</li>
+        <li>Quantity totals add up units of different products. Filter by product when the units differ.</li>
+        <li>With multi-step receipts, the receipt is tracked on the supplier to input step. Later internal transfers are not tracked.</li>
+        <li>After a return to the supplier the line stays open, because a replacement is expected.</li>
+        <li>The reports are database views. Changes are visible after they are saved.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">Frequently Asked Questions</h2>
+      <h5>Does this module work with Odoo 17 Community?</h5>
+      <p>Yes. It depends on the Purchase and Inventory apps and was tested on Odoo 17.0 Community.</p>
+      <h5>Does it work with Odoo Enterprise?</h5>
+      <p>It uses only standard models and is expected to work, but it has not been tested on Enterprise.</p>
+      <h5>How is the received quantity calculated?</h5>
+      <p>From validated stock receipts, through the received quantity Odoo keeps on the purchase line. Partial receipts, multiple receipts, returns and units of measure are handled there.</p>
+      <h5>What counts as on time?</h5>
+      <p>A completed order is on time when every line was last received on or before its expected day.</p>
+      <h5>Can notifications be sent twice?</h5>
+      <p>No. Each alert type is sent once for the same trigger. A new partial receipt or a new due date is a new situation.</p>
+      <h5>Does it modify standard Odoo files?</h5>
+      <p>No. It adds reporting models, views and menus, and a few fields on purchase orders and partners.</p>
+      <h5>Does it support multiple companies?</h5>
+      <p>Yes. Each report is restricted to the companies the user may access.</p>
+      <h5>Can I export reports?</h5>
+      <p>Yes. Use the standard Odoo export on lists and Download xlsx on pivots.</p>
+      <h5>How can I contact AXSync for support?</h5>
+      <p>Email <a href="mailto:hunain@axsync.com">hunain@axsync.com</a> or use the Contact the Author option on this Odoo Apps Store page.</p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 15px;">Support and Publisher</h2>
+      <p><strong>Published by AXSync</strong></p>
+      <p>Website: www.axsync.com</p>
+      <p>Support email: <a href="mailto:hunain@axsync.com">hunain@axsync.com</a></p>
+      <p>Please include your Odoo version, the module version, and what you expected to see. Screenshots help.</p>
+      <p class="text-muted" style="font-size: 13px;">This module is published by AXSync and is not an official Odoo product. Odoo is a trademark of Odoo S.A.</p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced" style="padding: 30px 0; background-color: #f8f9fa;">
+    <div class="container text-center">
+      <h2 style="margin-bottom: 10px;">See Every Supplier Delivery Before It Becomes a Problem.</h2>
+      <p style="font-size: 17px;">Install AXSync Smart Purchase &amp; Supplier Delivery Tracker and manage deliveries, partial receipts and supplier performance from one place.</p>
+      <p><strong>www.axsync.com</strong></p>
+    </div>
+  </div>
+</section>
