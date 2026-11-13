@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="axsync_delivery_supplier_view_tree" model="ir.ui.view">
+        <field name="name">axsync.delivery.supplier.tree</field>
+        <field name="model">axsync.delivery.supplier</field>
+        <field name="arch" type="xml">
+            <list string="Supplier Performance" create="0" edit="0" delete="0"
+                  decoration-danger="completed_orders &gt; 0 and on_time_pct &lt; 50"
+                  decoration-success="completed_orders &gt; 0 and on_time_pct &gt;= 90">
+                <field name="rank"/>
+                <field name="partner_id"/>
+                <field name="completed_orders" string="Completed" sum="Total"/>
+                <field name="on_time_orders" string="On Time" sum="Total"/>
+                <field name="late_orders" string="Late" sum="Total"/>
+                <field name="on_time_pct" widget="progressbar" avg="Average"/>
+                <field name="avg_delay_days" string="Avg Delay (d)" avg="Average"/>
+                <field name="avg_late_days" string="Avg Days Late" optional="hide"/>
+                <field name="max_delay_days" optional="hide"/>
+                <field name="open_orders" string="Open" sum="Total"/>
+                <field name="overdue_orders" string="Overdue" sum="Total"/>
+                <field name="partial_orders" optional="hide" sum="Total"/>
+                <field name="outstanding_qty" optional="hide" sum="Total"/>
+                <field name="order_count" optional="hide" sum="Total"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <button name="action_view_orders" type="object" icon="fa-list" title="Show Orders"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_supplier_view_form" model="ir.ui.view">
+        <field name="name">axsync.delivery.supplier.form</field>
+        <field name="model">axsync.delivery.supplier</field>
+        <field name="arch" type="xml">
+            <form string="Supplier Performance" create="0" edit="0" delete="0">
+                <header>
+                    <button name="action_view_orders" type="object" string="Show Orders" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Supplier">
+                            <field name="partner_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="rank"/>
+                        </group>
+                        <group string="Delivery performance">
+                            <field name="on_time_pct" widget="progressbar"/>
+                            <field name="avg_delay_days"/>
+                            <field name="avg_late_days"/>
+                            <field name="max_delay_days"/>
+                        </group>
+                        <group string="Orders">
+                            <field name="order_count"/>
+                            <field name="completed_orders"/>
+                            <field name="on_time_orders"/>
+                            <field name="late_orders"/>
+                            <field name="open_orders"/>
+                            <field name="overdue_orders"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_supplier_view_search" model="ir.ui.view">
+        <field name="name">axsync.delivery.supplier.search</field>
+        <field name="model">axsync.delivery.supplier</field>
+        <field name="arch" type="xml">
+            <search string="Search Suppliers">
+                <field name="partner_id"/>
+                <filter name="ranked" string="With Completed Orders" domain="[('completed_orders', '&gt;', 0)]"/>
+                <filter name="has_late" string="Has Late Deliveries" domain="[('late_orders', '&gt;', 0)]"/>
+                <filter name="has_overdue" string="Has Overdue Orders" domain="[('overdue_orders', '&gt;', 0)]"/>
+                <filter name="reliable" string="On-Time 90% or More" domain="[('completed_orders', '&gt;', 0), ('on_time_pct', '&gt;=', 90)]"/>
+                <filter name="at_risk" string="On-Time Below 70%" domain="[('completed_orders', '&gt;', 0), ('on_time_pct', '&lt;', 70)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_company" string="Company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_supplier_view_pivot" model="ir.ui.view">
+        <field name="name">axsync.delivery.supplier.pivot</field>
+        <field name="model">axsync.delivery.supplier</field>
+        <field name="arch" type="xml">
+            <pivot string="Supplier Performance" sample="1">
+                <field name="partner_id" type="row"/>
+                <field name="completed_orders" type="measure"/>
+                <field name="on_time_orders" type="measure"/>
+                <field name="late_orders" type="measure"/>
+                <field name="overdue_orders" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_supplier_view_graph" model="ir.ui.view">
+        <field name="name">axsync.delivery.supplier.graph</field>
+        <field name="model">axsync.delivery.supplier</field>
+        <field name="arch" type="xml">
+            <graph string="Supplier Performance" type="bar" sample="1">
+                <field name="partner_id"/>
+                <field name="on_time_pct" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="axsync_delivery_supplier_action" model="ir.actions.act_window">
+        <field name="name">Supplier Performance</field>
+        <field name="res_model">axsync.delivery.supplier</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="context">{'search_default_ranked': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No supplier performance yet</p>
+            <p>Rankings appear once confirmed purchase orders have been received.</p>
+        </field>
+    </record>
+</odoo>

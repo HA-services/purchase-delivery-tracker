@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+# Part of AXSync. See LICENSE file for full copyright and licensing details.
+{
+    'name': 'Purchase Delivery Tracker',
+    'summary': 'Delivery dashboard, supplier on-time performance, overdue analysis and delivery alerts for Purchase',
+    'description': 'AXSync Smart Purchase & Supplier Delivery Tracker. Delivery tracking and supplier performance '
+                   'on top of standard Odoo Purchase and Inventory receipts.',
+    'version': '18.0.1.0.0',
+    'category': 'Inventory/Purchase',
+    'author': 'AXSync',
+    'website': 'https://www.axsync.com',
+    'support': 'hunain@axsync.com',
+    'license': 'OPL-1',
+    'price': 45.00,
+    'currency': 'USD',
+    'depends': ['purchase_stock', 'mail'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/axsync_delivery_security.xml',
+        'data/ir_cron.xml',
+        'views/delivery_line_views.xml',
+        'views/delivery_order_views.xml',
+        'views/delivery_supplier_views.xml',
+        'views/delivery_alert_views.xml',
+        'views/purchase_order_views.xml',
+        'views/res_partner_views.xml',
+        'views/res_config_settings_views.xml',
+        'views/dashboard_views.xml',
+        'views/menus.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'axsync_purchase_delivery_tracker/static/src/scss/axsync_delivery_dashboard.scss',
+            'axsync_purchase_delivery_tracker/static/src/js/axsync_delivery_dashboard.js',
+            'axsync_purchase_delivery_tracker/static/src/xml/axsync_delivery_dashboard.xml',
+        ],
+    },
+    'images': [
+        'static/description/axsync_banner.png',
+        'static/description/axsync_dashboard_screenshot.png',
+        'static/description/axsync_screenshot_1.png',
+        'static/description/axsync_screenshot_2.png',
+        'static/description/axsync_screenshot_3.png',
+        'static/description/axsync_screenshot_4.png',
+        'static/description/axsync_screenshot_5.png',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}
