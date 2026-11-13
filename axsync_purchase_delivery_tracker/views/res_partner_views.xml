@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="axsync_res_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.axsync.delivery</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="action_axsync_view_deliveries" type="object" icon="fa-truck"
+                        groups="purchase.group_purchase_user" invisible="not axsync_has_orders">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="axsync_on_time_pct" widget="float" digits="[3, 1]"/> %</span>
+                        <span class="o_stat_text">On-Time Delivery</span>
+                    </div>
+                    <field name="axsync_has_orders" invisible="1"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

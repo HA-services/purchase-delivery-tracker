@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="axsync_purchase_delivery_tracker.Dashboard">
+        <div class="o_action axsync_delivery_dashboard overflow-auto">
+            <div class="d-flex align-items-center justify-content-between px-4 pt-4 pb-2">
+                <div>
+                    <h2 class="mb-0">Delivery Dashboard</h2>
+                    <div class="text-muted">Supplier deliveries from confirmed purchase orders, based on validated receipts</div>
+                </div>
+                <select class="form-select w-auto" t-on-change="this.onPeriodChange">
+                    <t t-foreach="this.periods" t-as="p" t-key="p.value">
+                        <option t-att-value="p.value" t-att-selected="p.value === this.state.days"><t t-esc="p.label"/></option>
+                    </t>
+                </select>
+            </div>
+            <t t-if="this.state.data">
+                <div class="row g-3 px-4 py-3">
+                    <t t-foreach="this.state.data.tiles" t-as="tile" t-key="tile.key">
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <div t-attf-class="card axsync_tile axsync_tile_#{tile.tone} h-100" role="button"
+                                 t-on-click="() => this.openTile(tile)">
+                                <div class="card-body">
+                                    <div class="axsync_tile_label"><t t-esc="tile.label"/></div>
+                                    <div class="axsync_tile_value"><t t-esc="this.formatValue(tile)"/></div>
+                                    <div class="axsync_tile_sub"><t t-esc="tile.sub"/></div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+                <div class="row g-3 px-4 pb-4">
+                    <div class="col-12 col-xl-6">
+                        <div class="card h-100">
+                            <div class="card-header fw-bold">Most overdue orders</div>
+                            <div class="card-body p-0">
+                                <table class="table table-sm table-hover mb-0">
+                                    <thead><tr><th>Order</th><th>Supplier</th><th>Expected</th><th class="text-end">Delay</th></tr></thead>
+                                    <tbody>
+                                        <tr t-if="!this.state.data.overdue.length"><td colspan="4" class="text-muted text-center py-3">No overdue orders.</td></tr>
+                                        <tr t-foreach="this.state.data.overdue" t-as="r" t-key="r.id" role="button" t-on-click="() => this.openOrder(r.id)">
+                                            <td><t t-esc="r.name"/></td>
+                                            <td><t t-esc="r.supplier"/></td>
+                                            <td><t t-esc="r.expected"/></td>
+                                            <td class="text-end"><t t-esc="r.delay"/> days</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-6">
+                        <div class="card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">Supplier ranking (all time)</span>
+                                <a href="#" t-on-click.prevent="this.openAllSuppliers">All suppliers</a>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-sm table-hover mb-0">
+                                    <thead><tr><th>#</th><th>Supplier</th><th class="text-end">On time</th><th class="text-end">Avg delay</th><th class="text-end">Late</th></tr></thead>
+                                    <tbody>
+                                        <tr t-if="!this.state.data.ranking.length"><td colspan="5" class="text-muted text-center py-3">No completed orders yet.</td></tr>
+                                        <tr t-foreach="this.state.data.ranking" t-as="r" t-key="r_index" role="button" t-on-click="() => this.openSupplier(r.id)">
+                                            <td><t t-esc="r.rank"/></td>
+                                            <td><t t-esc="r.supplier"/></td>
+                                            <td class="text-end"><t t-esc="r.on_time"/> %</td>
+                                            <td class="text-end"><t t-esc="r.avg_delay"/> d</td>
+                                            <td class="text-end"><t t-esc="r.late"/> of <t t-esc="r.completed"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

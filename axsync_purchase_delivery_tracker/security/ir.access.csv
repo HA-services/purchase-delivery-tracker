@@ -1,0 +1,10 @@
+id,name,model_id,group_id/id,operation,domain
+axsync_delivery_line_user,AXSync delivery lines: Purchase users read,axsync.delivery.line,purchase.group_purchase_user,r,
+axsync_delivery_order_user,AXSync delivery tracking: Purchase users read,axsync.delivery.order,purchase.group_purchase_user,r,
+axsync_delivery_supplier_user,AXSync supplier performance: Purchase users read,axsync.delivery.supplier,purchase.group_purchase_user,r,
+axsync_delivery_alert_user,AXSync delivery alerts: Purchase users read,axsync.delivery.alert,purchase.group_purchase_user,r,
+axsync_delivery_alert_manager,AXSync delivery alerts: Purchase managers delete,axsync.delivery.alert,purchase.group_purchase_manager,rd,
+axsync_delivery_line_company_rule,AXSync delivery lines: multi-company,axsync.delivery.line,,crud,"[('company_id', 'in', company_ids + [False])]"
+axsync_delivery_order_company_rule,AXSync delivery tracking: multi-company,axsync.delivery.order,,crud,"[('company_id', 'in', company_ids + [False])]"
+axsync_delivery_supplier_company_rule,AXSync supplier performance: multi-company,axsync.delivery.supplier,,crud,"[('company_id', 'in', company_ids + [False])]"
+axsync_delivery_alert_company_rule,AXSync delivery alerts: multi-company,axsync.delivery.alert,,crud,"[('company_id', 'in', company_ids + [False])]"

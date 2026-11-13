@@ -1,0 +1,21 @@
+.axsync_delivery_dashboard {
+    background-color: var(--o-view-background-color, #f5f7fa);
+    height: 100%;
+
+    .axsync_tile {
+        border-left: 5px solid #6c757d;
+        transition: box-shadow .15s ease;
+        &:hover { box-shadow: 0 4px 14px rgba(16, 31, 56, .15); }
+        .axsync_tile_label { font-size: .9rem; color: #495a70; font-weight: 500; }
+        .axsync_tile_value { font-size: 2rem; font-weight: 600; line-height: 1.2; color: #102a4c; }
+        .axsync_tile_sub { font-size: .75rem; color: #8896a8; text-transform: uppercase; letter-spacing: .04em; }
+    }
+    .axsync_tile_primary { border-left-color: #1d4f91; }
+    .axsync_tile_info { border-left-color: #2f80ed; }
+    .axsync_tile_danger { border-left-color: #dc3545; }
+    .axsync_tile_warning { border-left-color: #f2a33a; }
+    .axsync_tile_success { border-left-color: #198754; }
+    .axsync_tile_secondary { border-left-color: #6c7a8c; }
+    h2 { color: #102a4c; }
+    .card-header { background-color: #f0f4fa; color: #102a4c; }
+}
